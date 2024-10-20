@@ -2,15 +2,10 @@
 
  h3{color: brown;}
 
- .graphpaper {
-    background-color: #FFF;
-    background-image: linear-gradient( transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient( 90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06) );
-    background-size: 16px 16px;
-    background-repeat: repeat;
-    width:100%;
-    height:10vw;
-    }
+ 
  html, body {
+
+    
 	font-size: 16px;
 	font-family: sans-serif;
 	color: #393939;
