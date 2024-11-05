@@ -1,4 +1,4 @@
-for i in range(1,3):
+for i in range(1,4):
     print(i,"人目")
     name=input("名前を教えて下さい")
     waist=float(input("腹囲は？"))
