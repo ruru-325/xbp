@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>音楽探し</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet" href="./css/oruru.css">
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    <h1>Python音楽探し</h1>
+    <!-- 塊ごとにdivタグで区切るようにしましょう。 -->
+    <div>
+         <!-- ①↓に文字を書いてみよう -->
+        <h2>音楽探し</h2>
+
+        <p>
+            私たちの班では二つのいい案がでました。一つ目が翻訳アプリと感情によっておすすめの音楽を教えてもらおうというものです。<br>
+            私は後者の音楽について作ろうとしました。
+
+            ゆいなさんとゆうごさんはSpotifyを使うことですが私はSpotify使わないのでユーチューブmusicで作ろうと思いました。
+            </br>
+        </p>
+
+
+
+        <code>
+            <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+            <li style="background-color:#EFF;">#pip install ytmusicapi コマプロに入力</li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;"></li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;">from ytmusicapi import YTMusic</li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;">def search_playlist_by_mood_and_genre(mood, genre):</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;"""</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;ユーザーが指定した気分とジャンルを使ってYouTube Musicからプレイリストを検索する。</li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;Parameters:</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mood (str): ユーザーの気分 (例: "relaxing", "happy", "sad")</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;genre (str): 音楽ジャンル (例: "pop", "rock", "jazz")</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;Returns:</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list: 該当するプレイリストのタイトルとURL</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;"""</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# YTMusicの初期化</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;ytmusic = YTMusic()</li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 検索クエリの作成</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;query = f"{mood} {genre} playlist"</li>
+            <li style="background-color:#EFF;"></li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# 検索結果の取得</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;search_results = ytmusic.search(query, filter="playlists")</li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 結果の整形</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;playlists = []</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;for result in search_results:</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if "playlistId" in result:</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;playlists.append({</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": result["title"],</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": f"https://music.youtube.com/playlist?list={result['playlistId']}"</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return playlists</li>
+            <li style="background-color:#EFF;"></li>
+            <li style="background-color:#EEF;"></li>
+            <li style="background-color:#EFF;"># 使用例</li>
+            <li style="background-color:#EEF;">if __name__ == "__main__":</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;mood = input("気分を入力してください (例: relaxing, happy, sad): ").strip()</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;genre = input("ジャンルを入力してください (例: pop, rock, jazz): ").strip()</li>
+            <li style="background-color:#EFF;"></li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;playlists = search_playlist_by_mood_and_genre(mood, genre)</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;if playlists:</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\n該当するプレイリスト:")</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for idx, playlist in enumerate(playlists, start=1):</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"{idx}. {playlist['title']} - {playlist['url']}")</li>
+            <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+            <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("該当するプレイリストが見つかりませんでした。")</li>
+            <li style="background-color:#EFF;"></li>
+            </ol></code>
+        
+<p>
+    これがプログラミングコードです。結果は失敗です！！！！<br>
+    なにをやっても該当する音楽はありませんと返ってきます
+</p>
+<h3>考えられる原因</h3>
+<ul>
+    <li>非公式のAPIを使っているから</LI>
+    <li>Spotifyは違ってモードの概念がない</li>
+    <li>Spotifyは違ってジャンルの概念がない</li>
+</ul>
+<p>
+    これらが失敗の原因なのではないかと勝手に考えました<br>
+    Spotify組は成功しているのでうまくできなかったのが悔しいです。<br>
+    作成はチャットＧＰＴちゃんと一緒に頑張りました。
+</p>
+<h4>参考資料・班メンバー成功パターン</h4>
+　<a href="https://r202401973nk.github.io/xbp/de12/%EF%BC%94.html">Spotifyゆいなちゃんページ</a><br>
+　<a href="https://u5-han.github.io/xbp/de12/ongaku.html">Spotifyゆうごくんページ</a><br>
+　<a href="https://ytmusicapi.readthedocs.io/en/latest/" >非公式API参考</a><br>
+
+</body> 
+</html>

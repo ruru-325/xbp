@@ -1,16 +1,11 @@
-for i in range(1,4):
-    print(i,"人目")
-    name=input("名前を教えて下さい")
-    waist=float(input("腹囲は？"))
-    age=int(input("年齢は？"))
+#インポート
+import webbrowser
+import time
 
-
-
-    print(name, "さんは腹囲", waist, "cmで年齢は",age, "才ですね。")
-
-
-    if waist>=85 and age>=40:
-        print(name,"さん、内臓脂肪蓄積注意です")
-    else:
-        print(name,"さん、腹囲は問題ありません")
-
+#URLを開く
+webbrowser.open('https://www.youtube.com/watch?v=2DoRuPI2OxM&list=PLH-ORs6msKSeO54zI7Rfcr0zC50HiKcLp&index=1&t=0')
+while True:
+  print('Program executed successfully. This window will automatically close.')
+#自動終了
+  time.sleep(5)
+  break
