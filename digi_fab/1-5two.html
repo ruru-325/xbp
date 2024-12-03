@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>質問応答ページ</title>
+    <script>
+
+
+    imageContainer.innerHTML = '<img src="https://via.placeholder.com/150/0000FF" alt="Aの画像">';
+
+        function getResponse() {
+            // ユーザーの入力を取得
+            const userInput = document.getElementById("userInput").value;
+
+            // 応答を生成
+            let response;
+            
+            if (userInput.includes("こんにちは")) {
+                response = "こんにちは！元気ですか？";
+            } else if (userInput.includes("3006")) {
+                response  = "";
+            } else {
+                response = "すみません、その質問には答えられません。";
+            }
+            
+            if (userInput.includes("こんにちは")) {
+                response = "こんにちは！元気ですか？";
+            } else if (userInput.includes("天気")) {
+                response = "今日の天気は晴れです！";
+            } else {
+                response = "すみません、その質問には答えられません。";
+            }
+
+            // 結果を表示
+            document.getElementById("response").innerText = response;
+        }
+    </script>
+</head>
+<body>
+    <h1>質問応答ページ</h1>
+
+    今あなたがいるのはここです。
+    <img src="./images/pro-xZaDKUw7.jpeg" width="35%"> <br>
+
+    <p>行きたい場所はどこですか:</p>
+    <input type="text" id="userInput" placeholder="例: 3006">
+    <button onclick="getResponse()">送信</button>
+    <h2>答え:</h2>
+    <p id="response">ここに答えが表示されます。</p>
+</body>
+</html>
