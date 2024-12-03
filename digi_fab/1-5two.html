@@ -19,18 +19,17 @@
             if (userInput.includes("こんにちは")) {
                 response = "こんにちは！元気ですか？";
             } else if (userInput.includes("3006")) {
-                response  = "";
+                response  = "左の教室です";
+            } else if (userInput.includes("mnsカウンター")) {
+                response  = "８階中央階段を上ってすぐ左にカウンターがあります";
+            } else if (userInput.includes("ファブラボ")) {
+                response  = "一階にあります。図書館を階段で一階まで降りたら右手正面に透明な教室が見えます。そこです。";
+            
             } else {
                 response = "すみません、その質問には答えられません。";
             }
             
-            if (userInput.includes("こんにちは")) {
-                response = "こんにちは！元気ですか？";
-            } else if (userInput.includes("天気")) {
-                response = "今日の天気は晴れです！";
-            } else {
-                response = "すみません、その質問には答えられません。";
-            }
+            
 
             // 結果を表示
             document.getElementById("response").innerText = response;
@@ -43,7 +42,7 @@
     今あなたがいるのはここです。
     <img src="./images/pro-xZaDKUw7.jpeg" width="35%"> <br>
 
-    <p>行きたい場所はどこですか:</p>
+    <p>行きたい場所はどこですか(英数字は半角):</p>
     <input type="text" id="userInput" placeholder="例: 3006">
     <button onclick="getResponse()">送信</button>
     <h2>答え:</h2>

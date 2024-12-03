@@ -1,35 +1,62 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="jp">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>質問応答ページ</title>
-    <script>
-        function getResponse() {
-            // ユーザーの入力を取得
-            const userInput = document.getElementById("userInput").value;
-
-            // 応答を生成
-            let response;
-            if (userInput.includes("こんにちは")) {
-                response = "こんにちは！元気ですか？";
-            } else if (userInput.includes("天気")) {
-                response = "今日の天気は晴れです！";
-            } else {
-                response = "すみません、その質問には答えられません。";
-            }
-
-            // 結果を表示
-            document.getElementById("response").innerText = response;
-        }
-    </script>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>デザイン</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet" href="./css/oruru.css">
+    <!-- h1.htmlからある行をコピペしてくればOK -->
 </head>
 <body>
-    <h1>質問応答ページ</h1>
-    <p>質問を入力してください:</p>
-    <input type="text" id="userInput" placeholder="例: 天気はどう？">
-    <button onclick="getResponse()">送信</button>
-    <h2>答え:</h2>
-    <p id="response">ここに答えが表示されます。</p>
-</body>
+    <h1>デザイン　フォー　</h1>
+    <!-- 塊ごとにdivタグで区切るようにしましょう。 -->
+    <div>
+         <!-- ①↓に文字を書いてみよう -->
+        <h2>新神奈川大学マップ　作：るーさん</h2>
+
+        <p>
+            私たちが今回焦点を当てたのは<strong>1-5階までを行き来していたおじさん
+            </strong>についてです。<br>
+            <img src="./images/pro-irHnH2iQ.jpeg" width="35%"><br>
+            このようにわたしはこのおじさんを不審者ではなくトイレ探してたおじさんと仮定して考えました。<br>
+        </p>
+        
+        <p>
+            そして私が今回つくったのはこれです！！！<br>
+            <li><a href="./1-5two.html" target="_blank">KUｍｍマップ</a></li>
+
+        </p>
+        
+        
+            <h3>説明</h3>
+            じつはこれまだ未完成で、本来ならばこのウェブページをアップして、ＱＲコード化してそれを教室の前に貼るということを想定していましたが<br>
+            時間がなくてできませんでした。ウェブページ自体はうまくできているので覗いてほしいです。<br>
+
+            これは神奈川大学のマップがわからなかったおじさんがいると話をきき、<br>
+            自分も初めは場所全くわからなかったのでもっと簡単なマップが欲しいとおもいつくりました。<br>
+
+            やり方としては今あなたは３００７教室の扉の前のタブレットを見ていると仮定します。そこで３００７教室専用のＱＲコードを開くと<br>
+            <img src="./images/pro-xZaDKUw7.jpeg" width="35%"><br>
+            このように今いる場所を教えてくれます。<br>
+
+            次に行きたい場所を打ちます。今回は隣の３００６教室と打ちます。すると<br>
+            <img src="./images/3006.png" width="35%"><br>
+            このようにでます<br>
+
+            ほかにも個人的に迷ったふたつの場所をききます。<br>
+            <img src="./images/mnd.png" width="35%"><br>
+            <img src="./images/fab.png" width="35%"><br>
+
+            <strong>※今のところこの３つしか答えてくれません。</strong>
+
+            <h3>使用器具</h3>
+            ・VSコード・チャットＧＰＴ・（読み込む用のＱＲコードをレーザープリンターで作ろうとしていました）
+
+            <h3>メンバー</h3>
+            ・
+            
+
+
+
+</body> 
 </html>
