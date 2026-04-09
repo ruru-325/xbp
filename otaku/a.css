@@ -1,0 +1,208 @@
+/* --- 基本設定 --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* 可愛いフォントを適用 */
+    font-family: 'Mochiy Pop P One', sans-serif;
+    /* 非常に淡い水色 (ふわふわ感) */
+    background-color: #f7faff;
+    color: #555; /* 柔らかいグレー */
+    line-height: 1.6;
+}
+
+.page-container {
+    max-width: 600px; /* スマートフォン向け幅 */
+    margin: 0 auto;
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- ヘッダー & 波の境界線 --- */
+.page-header {
+    background-color: white;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.user-name {
+    font-size: 2.5rem;
+    font-weight: normal;
+    margin: 0;
+    color: #555; /* グレー */
+}
+
+/* 波状の境界線の実装 (SVGを使用) */
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; /* 波の高さ */
+    /* パステル水色で塗りつぶすSVG */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0 0 L0 50 C 240 120 480 0 720 50 C 960 120 1200 0 1440 50 L 1440 0 Z" fill="%23b3e5fc" /></svg>');
+    background-size: 100% 100%;
+    z-index: -1;
+}
+
+/* --- メインコンテンツ --- */
+.page-main {
+    /* パステル水色 (手書き画像のイメージ) */
+    background-color: #b3e5fc;
+    flex-grow: 1;
+    position: relative;
+    padding: 40px 20px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- アイコン --- */
+.user-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* まる */
+    background-color: white;
+    /* 手書き風グレーの太い枠 */
+    border: 3px solid #777;
+    padding: 10px; /* 内側の白い丸を強調 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ふわっと影 */
+    object-fit: cover;
+}
+
+.icon-label {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* --- プロフィール枠 --- */
+.profile-container {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-frame {
+    /* 手書き風グレーの太い枠 */
+    border: 3px solid #777;
+    border-radius: 20px; /* ふわふわ角丸 */
+    padding: 20px;
+    position: relative;
+    display: inline-block;
+    min-width: 250px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 柔らかい影 */
+}
+
+/* シンプルなリボンCSS */
+.ribbon {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    background-color: #e0f7fa; /* さらに淡い水色 */
+    border-radius: 5px;
+    border: 2px solid #777;
+    z-index: 1;
+}
+
+.ribbon::before, .ribbon::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: inherit;
+    border: inherit;
+    border-radius: 5px;
+    z-index: -1;
+}
+.ribbon::before { left: -10px; transform: rotate(-30deg); }
+.ribbon::after { right: -10px; transform: rotate(30deg); }
+
+.profile-frame h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.profile-frame p {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+/* --- 推しボタン (2人、横並び) --- */
+.oshi-buttons-container {
+    display: flex;
+    justify-content: space-around; /* 均等に配置 */
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+
+.oshi-button img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* まる */
+    border: 3px solid #777;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-out; /* ふわっと動く効果 */
+    object-fit: cover;
+}
+
+/* タップ/ホバーでふわっと拡大 */
+.oshi-button img:hover {
+    transform: scale(1.1);
+}
+
+/* --- 追加ボタン (6つ、グリッド) --- */
+.extra-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.extra-button {
+    display: block;
+    padding: 15px 20px;
+    /* さらに淡い水色 (ふわふわ系) */
+    background-color: #e0f7fa;
+    color: #555;
+    text-decoration: none;
+    border-radius: 15px; /* ふわふわ角丸 */
+    text-align: center;
+    border: 2px solid #777;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1.1rem;
+}
+
+/* タップ/ホバーでふわっと色が変わり、浮かび上がる */
+.extra-button:hover {
+    background-color: #b2ebf2; /* ホバーで色を濃く */
+    transform: translateY(-3px); /* ふわっと浮かび上がる */
+}
