@@ -1,13 +1,16 @@
 body {
-
-font-family: 'Zen Old Mincho', serif;
-
   margin: 0;
-  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-  background: url("images/bg.jpg") no-repeat center/cover;
+  font-family: 'Zen Old Mincho', serif;
+
+  /* 背景＋ふんわりフィルター */
+  background:
+    linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+    url("haikeiao.jpg") no-repeat center/cover;
+
+  background-attachment: fixed;
+
   color: #4a4a4a;
 }
-
 
 /* ヘッダー */
 header {
@@ -15,14 +18,28 @@ header {
   padding: 12px;
   background: rgba(255,255,255,0.6);
   font-size: 13px;
-  letter-spacing: 1px;
   backdrop-filter: blur(5px);
 }
 
-/* メイン */
+/* レース */
+.lace {
+  height: 20px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 10px,
+    #e6f7ff 10px,
+    #e6f7ff 20px
+  );
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* メイン（ガラスっぽさ） */
 main {
   text-align: center;
   padding: 20px;
+  backdrop-filter: blur(3px);
 }
 
 /* アイコン */
@@ -34,32 +51,30 @@ main {
   box-shadow: 0 0 15px rgba(173, 216, 230, 0.5);
 }
 
-/* カード（本のページ感） */
+/* プロフィール（本のページ感） */
 .profile {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   padding: 18px;
   border-radius: 20px;
   margin-bottom: 25px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border: 1px solid #e3f6ff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   line-height: 1.6;
 }
 
 /* 見出し */
 h2 {
   color: #8fd3ff;
-  font-size: 18px;
 }
 
 h3 {
   color: #a8e1ff;
-  font-size: 14px;
 }
 
 /* 推し */
 .oshi-list {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .oshi-list img {
@@ -73,7 +88,7 @@ h3 {
   transform: scale(0.95);
 }
 
-/* ぷにっとボタン */
+/* ボタン（ぷに＋絵文字） */
 .links a {
   display: block;
   margin: 12px 0;
@@ -84,17 +99,37 @@ h3 {
   color: #5a5a5a;
   font-size: 14px;
 
-  /* ぷに感 */
   box-shadow:
     5px 5px 10px #d6ecf7,
     -5px -5px 10px #ffffff;
+
   transition: 0.2s;
 }
 
-/* 押したとき */
 .links a:active {
   box-shadow:
     inset 3px 3px 6px #d6ecf7,
     inset -3px -3px 6px #ffffff;
   transform: scale(0.97);
+}
+
+/* トップに戻る */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  background: #e6f7ff;
+  color: #555;
+  padding: 10px 14px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 16px;
+
+  box-shadow:
+    3px 3px 6px #d6ecf7,
+    -3px -3px 6px #ffffff;
+}
+
+.to-top:active {
+  transform: scale(0.9);
 }
