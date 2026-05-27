@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>douyouLab</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* ======================
+   背景ペイント
+====================== */
+
+.paint{
+  position:fixed;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  filter:blur(140px);
+  opacity:0.18;
+  z-index:-1;
+  animation:float 10s ease-in-out infinite;
+}
+
+.paint1{
+  background:#ffffff;
+  top:-150px;
+  left:-100px;
+}
+
+.paint2{
+  background:#666;
+  bottom:-200px;
+  right:-100px;
+  animation-delay:3s;
+}
+
+.paint3{
+  background:#999;
+  top:40%;
+  left:50%;
+  animation-delay:5s;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(40px);
+  }
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+/* ======================
+   NAVBAR
+====================== */
+
+.navbar{
+
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 8%;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
+  z-index:999;
+
+}
+
+.logo{
+
+  font-size:2.5rem;
+  font-weight:700;
+  letter-spacing:2px;
+
+}
+
+.logo span{
+
+  color:#777;
+
+}
+
+.nav-links{
+
+  display:flex;
+  gap:35px;
+  list-style:none;
+
+}
+
+.nav-links a{
+
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+  transition:0.3s;
+
+}
+
+.nav-links a::after{
+
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0%;
+  height:2px;
+  background:white;
+  transition:0.3s;
+
+}
+
+.nav-links a:hover::after{
+
+  width:100%;
+
+}
+
+/* ======================
+   HERO
+====================== */
+
+.hero{
+
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 10%;
+
+}
+
+.hero-inner{
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:80px;
+  flex-wrap:wrap;
+
+}
+
+/* ロゴ */
+
+.hero-logo{
+
+  width:260px;
+  height:260px;
+  border:8px solid white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:3rem;
+  font-weight:bold;
+  position:relative;
+  overflow:hidden;
+
+}
+
+/* ペイント演出 */
+
+.hero-logo::before{
+
+  content:"";
+  position:absolute;
+  width:150%;
+  height:150%;
+  background:
+  linear-gradient(
+    45deg,
+    white,
+    #777,
+    #222,
+    white
+  );
+
+  animation:rotate 6s linear infinite;
+  z-index:-1;
+
+}
+
+@keyframes rotate{
+
+  0%{
+    transform:rotate(0deg);
+  }
+
+  100%{
+    transform:rotate(360deg);
+  }
+
+}
+
+/* キャッチコピー */
+
+.hero-text h1{
+
+  font-size:5rem;
+  line-height:1.2;
+  margin-bottom:20px;
+  text-transform:uppercase;
+
+}
+
+.hero-text h1 span{
+
+  color:#777;
+
+}
+
+.hero-text p{
+
+  color:#cbd5e1;
+  font-size:1.2rem;
+  line-height:2;
+  max-width:600px;
+
+}
+
+/* ======================
+   ABOUT
+====================== */
+
+.about{
+
+  padding:120px 10%;
+
+}
+
+.about-card{
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:32px;
+  padding:60px;
+  backdrop-filter:blur(10px);
+
+}
+
+.about-card h2{
+
+  font-size:3rem;
+  margin-bottom:30px;
+
+}
+
+.about-card p{
+
+  color:#d1d5db;
+  line-height:2.2;
+  font-size:1.1rem;
+
+}
+
+/* ======================
+   PROJECTS
+====================== */
+
+.projects{
+
+  padding:50px 10% 120px;
+
+}
+
+.project-title{
+
+  font-size:3rem;
+  margin-bottom:50px;
+
+}
+
+.project-grid{
+
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap:35px;
+
+}
+
+/* ======================
+   PROJECT CARD
+====================== */
+
+.project-card{
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:30px;
+  overflow:hidden;
+  transition:0.5s;
+  position:relative;
+
+  backdrop-filter:blur(10px);
+
+}
+
+/* ペイント背景 */
+
+.project-card::before{
+
+  content:"";
+  position:absolute;
+  inset:-20%;
+  opacity:0;
+  transition:0.6s;
+  z-index:0;
+
+  filter:blur(50px);
+
+}
+
+/* 赤 */
+
+.project-card:nth-child(1)::before{
+
+  background:
+  radial-gradient(
+    circle at top left,
+    rgba(255,0,80,0.8),
+    transparent 45%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(255,120,120,0.5),
+    transparent 50%
+  );
+
+}
+
+/* 青 */
+
+.project-card:nth-child(2)::before{
+
+  background:
+  radial-gradient(
+    circle at top left,
+    rgba(0,180,255,0.8),
+    transparent 45%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(0,120,255,0.5),
+    transparent 50%
+  );
+
+}
+
+/* 緑 */
+
+.project-card:nth-child(3)::before{
+
+  background:
+  radial-gradient(
+    circle at top left,
+    rgba(0,255,140,0.8),
+    transparent 45%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(120,255,180,0.5),
+    transparent 50%
+  );
+
+}
+
+/* hover */
+
+.project-card:hover{
+
+  transform:
+  translateY(-14px)
+  rotate(-1deg)
+  scale(1.02);
+
+  box-shadow:
+  0 20px 50px rgba(255,255,255,0.08);
+
+}
+
+/* ペイント発光 */
+
+.project-card:hover::before{
+
+  opacity:1;
+
+}
+
+/* 画像 */
+
+.project-card img{
+
+  width:100%;
+  height:220px;
+  object-fit:cover;
+
+  filter:
+  grayscale(100%)
+  contrast(110%);
+
+  transition:0.7s;
+
+  position:relative;
+  z-index:1;
+
+}
+
+/* hoverでカラー化 */
+
+.project-card:hover img{
+
+  filter:
+  grayscale(0%)
+  contrast(120%)
+  saturate(140%);
+
+  transform:scale(1.05);
+
+}
+
+/* 情報 */
+
+.project-info{
+
+  padding:30px;
+  position:relative;
+  z-index:1;
+
+}
+
+.project-info h3{
+
+  margin-bottom:15px;
+  font-size:1.5rem;
+
+}
+
+.project-info p{
+
+  color:#cbd5e1;
+  line-height:1.8;
+  margin-bottom:20px;
+
+}
+
+/* ボタン */
+
+.project-btn{
+
+  display:inline-block;
+  padding:12px 24px;
+
+  border:1px solid white;
+  border-radius:999px;
+
+  color:white;
+  text-decoration:none;
+
+  transition:0.4s;
+
+  position:relative;
+  overflow:hidden;
+
+}
+
+/* ボタンのペイント */
+
+.project-btn::before{
+
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:white;
+
+  transform:translateX(-100%);
+  transition:0.4s;
+
+  z-index:-1;
+
+}
+
+/* ボタン hover */
+
+.project-btn:hover{
+
+  color:black;
+
+}
+
+.project-btn:hover::before{
+
+  transform:translateX(0);
+
+}
+
+/* ======================
+   SCROLL ANIMATION
+====================== */
+
+.fade{
+
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+
+}
+
+.fade.show{
+
+  opacity:1;
+  transform:translateY(0);
+
+}
+
+/* ======================
+   MOBILE
+====================== */
+
+@media(max-width:768px){
+
+  .navbar{
+
+    flex-direction:column;
+    gap:20px;
+
+  }
+
+  .nav-links{
+
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+
+  }
+
+  .hero-text h1{
+
+    font-size:3rem;
+
+  }
+
+  .hero-inner{
+
+    flex-direction:column;
+
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 背景 -->
+
+<div class="paint paint1"></div>
+<div class="paint paint2"></div>
+<div class="paint paint3"></div>
+
+<!-- NAV -->
+
+<nav class="navbar">
+
+<div class="logo">
+  douyou<span>Lab</span>
+</div>
+
+<ul class="nav-links">
+
+<li><a href="xbc1.html">XBC I・II</a></li>
+<li><a href="xbc34.html">XBC III・IV</a></li>
+<li><a href="xbc5.html">XBC V</a></li>
+<li><a href="digifab.html">デジファブ</a></li>
+<li><a href="seminar.html">道用ゼミ</a></li>
+
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-inner fade">
+
+<div class="hero-logo">
+  D
+</div>
+
+<div class="hero-text">
+
+<h1>
+
+CREATE<br>
+YOUR<br>
+<span>COLOR.</span>
+
+</h1>
+
+<p>
+
+何色にも染まれる。
+サステナビリティ、
+デジタルファブリケーション、
+地域連携、
+クリエイティブ制作。
+
+道用ゼミでの活動を通して、
+新しい価値創造を探究する。
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about">
+
+<div class="about-card fade">
+
+<h2>
+About douyouLab
+</h2>
+
+<p>
+
+道用ゼミでは、
+サーキュラーエコノミーや
+デジタルファブリケーションをテーマに、
+実践的なプロジェクト活動を行っている。
+
+Fusion360や3Dプリンタを活用した制作、
+地域との連携、
+サステナブルなものづくりなど、
+多様な分野を横断しながら
+「新しい価値」を創造することを目指している。
+
+</p>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section class="projects">
+
+<h2 class="project-title fade">
+Projects
+</h2>
+
+<div class="project-grid">
+
+<!-- CARD -->
+
+<div class="project-card fade">
+
+<img src="images/project1.jpg">
+
+<div class="project-info">
+
+<h3>
+Circular Economy
+</h3>
+
+<p>
+
+循環型社会について研究し、
+持続可能な未来を考察。
+
+</p>
+
+<a href="circular.html" class="project-btn">
+View Project
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="project-card fade">
+
+<img src="images/project2.jpg">
+
+<div class="project-info">
+
+<h3>
+Digital Fabrication
+</h3>
+
+<p>
+
+3DプリンタやFusion360を活用した
+ものづくりプロジェクト。
+
+</p>
+
+<a href="pellet.html" class="project-btn">
+View Project
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="project-card fade">
+
+<img src="images/project3.jpg">
+
+<div class="project-info">
+
+<h3>
+Yokohama Project
+</h3>
+
+<p>
+
+横浜市との地域連携活動。
+地域課題解決を探究。
+
+</p>
+
+<a href="yokohama.html" class="project-btn">
+View Project
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SCRIPT -->
+
+<script>
+
+const fades = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach((entry)=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add('show');
+
+}
+
+});
+
+},{
+threshold:0.2
+});
+
+fades.forEach((el)=>{
+observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
