@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>douyouLab</title>
+<title>doyolab</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -352,88 +352,68 @@ body{
    PROJECT CARD
 ====================== */
 
-.project-card{
+/* ======================
+   PROJECT CARD
+====================== */
 
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:30px;
-  overflow:hidden;
-  transition:0.5s;
-  position:relative;
+.project-grid{
 
-  backdrop-filter:blur(10px);
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(320px,1fr));
+
+  gap:40px;
 
 }
 
-/* ペイント背景 */
+/* カード */
+
+.project-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:36px;
+
+  padding:60px 40px;
+
+  min-height:520px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(12px);
+
+  transition:0.5s;
+
+}
+
+/* 斜めデザイン */
 
 .project-card::before{
 
   content:"";
+
   position:absolute;
-  inset:-20%;
-  opacity:0;
-  transition:0.6s;
-  z-index:0;
 
-  filter:blur(50px);
-
-}
-
-/* 赤 */
-
-.project-card:nth-child(1)::before{
+  width:60%;
+  height:120%;
 
   background:
-  radial-gradient(
-    circle at top left,
-    rgba(255,0,80,0.8),
-    transparent 45%
-  ),
+  rgba(255,255,255,0.06);
 
-  radial-gradient(
-    circle at bottom right,
-    rgba(255,120,120,0.5),
-    transparent 50%
-  );
+  top:-10%;
+  right:-20%;
 
-}
-
-/* 青 */
-
-.project-card:nth-child(2)::before{
-
-  background:
-  radial-gradient(
-    circle at top left,
-    rgba(0,180,255,0.8),
-    transparent 45%
-  ),
-
-  radial-gradient(
-    circle at bottom right,
-    rgba(0,120,255,0.5),
-    transparent 50%
-  );
-
-}
-
-/* 緑 */
-
-.project-card:nth-child(3)::before{
-
-  background:
-  radial-gradient(
-    circle at top left,
-    rgba(0,255,140,0.8),
-    transparent 45%
-  ),
-
-  radial-gradient(
-    circle at bottom right,
-    rgba(120,255,180,0.5),
-    transparent 50%
-  );
+  transform:rotate(25deg);
 
 }
 
@@ -442,77 +422,134 @@ body{
 .project-card:hover{
 
   transform:
-  translateY(-14px)
-  rotate(-1deg)
-  scale(1.02);
+  translateY(-12px);
 
   box-shadow:
-  0 20px 50px rgba(255,255,255,0.08);
+  0 20px 50px rgba(0,0,0,0.4);
 
 }
 
-/* ペイント発光 */
+/* 色変化 */
 
-.project-card:hover::before{
+.project-card:nth-child(1):hover{
 
-  opacity:1;
-
-}
-
-/* 画像 */
-
-.project-card img{
-
-  width:100%;
-  height:220px;
-  object-fit:cover;
-
-  filter:
-  grayscale(100%)
-  contrast(110%);
-
-  transition:0.7s;
-
-  position:relative;
-  z-index:1;
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,0,100,0.25),
+    rgba(255,255,255,0.05)
+  );
 
 }
 
-/* hoverでカラー化 */
+.project-card:nth-child(2):hover{
 
-.project-card:hover img{
-
-  filter:
-  grayscale(0%)
-  contrast(120%)
-  saturate(140%);
-
-  transform:scale(1.05);
+  background:
+  linear-gradient(
+    135deg,
+    rgba(0,180,255,0.25),
+    rgba(255,255,255,0.05)
+  );
 
 }
 
-/* 情報 */
+.project-card:nth-child(3):hover{
 
-.project-info{
-
-  padding:30px;
-  position:relative;
-  z-index:1;
+  background:
+  linear-gradient(
+    135deg,
+    rgba(0,255,140,0.25),
+    rgba(255,255,255,0.05)
+  );
 
 }
+
+/* アイコン */
+
+.project-icon{
+
+  font-size:4rem;
+
+  margin-bottom:40px;
+
+  display:block;
+
+}
+
+/* タイトル */
 
 .project-info h3{
 
-  margin-bottom:15px;
-  font-size:1.5rem;
+  font-size:2.3rem;
+
+  margin-bottom:25px;
+
+  font-weight:700;
 
 }
 
+/* 説明 */
+
 .project-info p{
 
-  color:#cbd5e1;
+  color:#d1d5db;
+
   line-height:1.8;
-  margin-bottom:20px;
+
+  font-size:1.1rem;
+
+  margin-bottom:50px;
+
+}
+
+/* ボタン */
+
+.project-btn{
+
+  display:inline-block;
+
+  padding:16px 34px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #27e0d7,
+    #6d7cff
+  );
+
+  color:white;
+
+  text-decoration:none;
+
+  font-weight:600;
+
+  transition:0.4s;
+
+}
+
+/* ボタン hover */
+
+.project-btn:hover{
+
+  transform:
+  scale(1.08);
+
+  box-shadow:
+  0 0 30px rgba(100,150,255,0.5);
+
+}
+
+/* モバイル */
+
+@media(max-width:768px){
+
+  .project-card{
+
+    min-height:auto;
+
+  }
 
 }
 
@@ -744,16 +781,16 @@ body{
 <nav class="navbar">
 
 <div class="logo">
-  douyou<span>Lab</span>
+  doyo<span>lab</span>
 </div>
 
 <ul class="nav-links">
 
-<li><a href="xbc1.html">XBC I・II</a></li>
-<li><a href="xbc34.html">XBC III・IV</a></li>
-<li><a href="xbc5.html">XBC V</a></li>
-<li><a href="digifab.html">デジファブ</a></li>
-<li><a href="seminar.html">道用ゼミ</a></li>
+<li><a href="/de12/index.html">XBC I・II</a></li>
+<li><a href="/de34/index.html">XBC III・IV</a></li>
+<li><a href="/de56/index.html">XBC V</a></li>
+<li><a href="/digi_fab/index.html">デジファブ</a></li>
+<li><a href="https://doyolab.net/">doyolab</a><br></li>
 
 </ul>
 
@@ -766,7 +803,7 @@ body{
 <div class="hero-inner fade">
 
 <div class="hero-logo">
-  D
+  XBP
 </div>
 
 <div class="hero-text">
@@ -805,7 +842,7 @@ YOUR<br>
 <div class="about-card fade">
 
 <h2>
-About douyouLab
+About doyolab
 </h2>
 
 <p>
@@ -841,7 +878,9 @@ Projects
 
 <div class="project-card fade">
 
-<img src="images/project1.jpg">
+<span class="project-icon">
+♻️
+</span>
 
 <div class="project-info">
 
@@ -850,14 +889,12 @@ Circular Economy
 </h3>
 
 <p>
-
-循環型社会について研究し、
-持続可能な未来を考察。
-
+サーキュラーエコノミーについて研究。
+循環型社会と持続可能な未来を探究。
 </p>
 
 <a href="circular.html" class="project-btn">
-View Project
+View Project →
 </a>
 
 </div>
@@ -868,34 +905,9 @@ View Project
 
 <div class="project-card fade">
 
-<img src="images/project2.jpg">
-
-<div class="project-info">
-
-<h3>
-Digital Fabrication
-</h3>
-
-<p>
-
-3DプリンタやFusion360を活用した
-ものづくりプロジェクト。
-
-</p>
-
-<a href="pellet.html" class="project-btn">
-View Project
-</a>
-
-</div>
-
-</div>
-
-<!-- CARD -->
-
-<div class="project-card fade">
-
-<img src="images/project3.jpg">
+<span class="project-icon">
+🏙️
+</span>
 
 <div class="project-info">
 
@@ -904,14 +916,39 @@ Yokohama Project
 </h3>
 
 <p>
-
 横浜市との地域連携活動。
-地域課題解決を探究。
-
+地域課題解決プロジェクト。
 </p>
 
 <a href="yokohama.html" class="project-btn">
-View Project
+View Project →
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="project-card fade">
+
+<span class="project-icon">
+🧪
+</span>
+
+<div class="project-info">
+
+<h3>
+Pellet Production
+</h3>
+
+<p>
+リサイクル素材を活用した
+ペレット制作プロジェクト。
+</p>
+
+<a href="pellet.html" class="project-btn">
+View Project →
 </a>
 
 </div>
