@@ -148,10 +148,26 @@ body{
 .hero{
 
   min-height:100vh;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   padding:120px 10%;
+
+  /* 背景画像 */
+  background:
+  linear-gradient(
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.65)
+  ),
+
+  url("images/haikei.jpg");
+
+  background-size:cover;
+  background-position:center;
+
+  position:relative;
 
 }
 
@@ -216,7 +232,17 @@ body{
   }
 
 }
+@keyframes rainbow{
 
+  0%{
+    background-position:0%;
+  }
+
+  100%{
+    background-position:300%;
+  }
+
+}
 /* キャッチコピー */
 
 .hero-text h1{
@@ -230,7 +256,24 @@ body{
 
 .hero-text h1 span{
 
-  color:#777;
+  background:
+  linear-gradient(
+    90deg,
+    #ff004c,
+    #ff7b00,
+    #ffee00,
+    #00ff88,
+    #00cfff,
+    #7a5cff,
+    #ff00c8
+  );
+
+  background-size:300%;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:rainbow 6s linear infinite;
 
 }
 
@@ -475,38 +518,145 @@ body{
 
 /* ボタン */
 
+/* ======================
+   BUTTON
+====================== */
+
 .project-btn{
 
   display:inline-block;
-  padding:12px 24px;
+
+  padding:14px 28px;
 
   border:1px solid white;
   border-radius:999px;
 
   color:white;
   text-decoration:none;
-
-  transition:0.4s;
+  font-weight:600;
 
   position:relative;
   overflow:hidden;
 
+  transition:0.4s;
+
+  z-index:1;
+
 }
 
-/* ボタンのペイント */
+/* 背景スライド */
 
 .project-btn::before{
 
   content:"";
+
   position:absolute;
   inset:0;
 
   background:white;
 
   transform:translateX(-100%);
-  transition:0.4s;
+
+  transition:0.5s;
+
+  z-index:-2;
+
+}
+
+/* ペイント */
+
+.project-btn::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:300%;
+  height:300%;
+
+  top:-100%;
+  left:-100%;
+
+  background:
+
+  radial-gradient(
+    circle,
+    rgba(255,0,100,0.8) 0%,
+    transparent 20%
+  ),
+
+  radial-gradient(
+    circle,
+    rgba(0,200,255,0.8) 0%,
+    transparent 20%
+  ),
+
+  radial-gradient(
+    circle,
+    rgba(0,255,150,0.8) 0%,
+    transparent 20%
+  ),
+
+  radial-gradient(
+    circle,
+    rgba(255,255,0,0.7) 0%,
+    transparent 20%
+  );
+
+  background-size:
+  120px 120px,
+  160px 160px,
+  140px 140px,
+  180px 180px;
+
+  opacity:0;
+
+  transform:scale(0.5) rotate(0deg);
+
+  transition:
+  opacity 0.6s,
+  transform 0.8s;
 
   z-index:-1;
+
+  filter:blur(12px);
+
+}
+
+/* hover */
+
+.project-btn:hover{
+
+  color:black;
+
+  transform:
+  scale(1.08)
+  rotate(-1deg);
+
+  border-color:white;
+
+  box-shadow:
+  0 0 30px rgba(255,255,255,0.2);
+
+}
+
+/* 白背景 */
+
+.project-btn:hover::before{
+
+  transform:translateX(0);
+
+}
+
+/* ペイント爆発 */
+
+.project-btn:hover::after{
+
+  opacity:1;
+
+  transform:
+  scale(1)
+  rotate(15deg);
 
 }
 
