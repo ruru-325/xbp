@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>douyou るーさんのページ</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: white;
+      overflow-x:hidden;
+    }
+
+    /* 背景アニメーション */
+    body::before{
+      content:"";
+      position:fixed;
+      width:600px;
+      height:600px;
+      background:linear-gradient(45deg,#00ffcc,#6c63ff);
+      filter:blur(180px);
+      top:-200px;
+      right:-100px;
+      opacity:0.4;
+      animation: float 8s ease-in-out infinite;
+      z-index:-1;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(30px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    header{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .logo{
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#00ffcc,#6c63ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:42px;
+      font-weight:bold;
+      margin-bottom:25px;
+      box-shadow:0 0 40px rgba(108,99,255,0.5);
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse{
+      0%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.08);
+      }
+      100%{
+        transform:scale(1);
+      }
+    }
+
+    h1{
+      font-size:4rem;
+      margin-bottom:10px;
+      letter-spacing:2px;
+    }
+
+    .subtitle{
+      font-size:1.2rem;
+      color:#cbd5e1;
+      margin-bottom:50px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+      width:100%;
+      max-width:1200px;
+      padding:40px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      backdrop-filter:blur(12px);
+      border-radius:24px;
+      padding:35px;
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      width:200%;
+      height:200%;
+      background:linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+      );
+      top:-100%;
+      left:-100%;
+      transform:rotate(25deg);
+      transition:0.7s;
+    }
+
+    .card:hover::before{
+      top:100%;
+      left:100%;
+    }
+
+    .card:hover{
+      transform:translateY(-10px) scale(1.03);
+      box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .icon{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .card h2{
+      margin-bottom:15px;
+      font-size:1.5rem;
+    }
+
+    .card p{
+      color:#d1d5db;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 24px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#00ffcc,#6c63ff);
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.08);
+      opacity:0.9;
+    }
+
+    footer{
+      text-align:center;
+      padding:40px;
+      color:#94a3b8;
+      font-size:0.9rem;
+    }
+
+    /* スマホ対応 */
+    @media(max-width:768px){
+      h1{
+        font-size:2.5rem;
+      }
+
+      .cards{
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <!-- ロゴ -->
+    <div class="logo">A</div>
+
+    <h1>道用ゼミ</h1>
+
+    <p class="subtitle">
+      Creativity × Sustainability × Design
+    </p>
+
+    <!-- カード -->
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">♻️</div>
+
+        <h2>Circular Economy</h2>
+
+        <p>
+          サーキュラーエコノミーについて
+        </p>
+
+        <a href="0.html" class="btn">
+          View Project →
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏙️</div>
+
+        <h2>Yokohama Project</h2>
+
+        <p>
+          横浜市との地域連携活動。
+          地域課題提供
+        </p>
+
+        <a href="1.html" class="btn">
+          View Project →
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧪</div>
+
+        <h2>Pellet Production</h2>
+
+        <p>
+          リサイクル素材を活用した
+          ペレット制作プロジェクト。
+        </p>
+
+        <a href="2.html" class="btn">
+          View Project →
+        </a>
+      </div>
+
+    </div>
+
+  </header>
+
+  <footer>
+    © 2026 Applied Seminar Portfolio
+  </footer>
+
+</body>
+</html>
