@@ -7,12 +7,21 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <style>
+  /* =========================
+     INTRO
+  ========================= */
+
   .personal-intro {
     max-width: 720px;
     margin-top: 30px;
     line-height: 2;
     color: #555;
   }
+
+
+  /* =========================
+     GALLERY
+  ========================= */
 
   .project-gallery {
     display: grid;
@@ -72,7 +81,11 @@
     line-height: 1.7;
   }
 
-  /* モーダル */
+
+  /* =========================
+     MODAL
+  ========================= */
+
   .project-modal {
     position: fixed;
     inset: 0;
@@ -91,8 +104,8 @@
   .modal-inner {
     position: relative;
     background: #fff;
-    width: min(720px, 100%);
-    max-height: 85vh;
+    width: min(760px, 100%);
+    max-height: 88vh;
     overflow-y: auto;
     padding: 50px;
   }
@@ -106,6 +119,7 @@
     font-size: 28px;
     cursor: pointer;
     color: #333;
+    z-index: 5;
   }
 
   .modal-label {
@@ -120,16 +134,84 @@
     font-weight: 500;
   }
 
-  .modal-image {
+
+  /* =========================
+     PHOTO SLIDER
+  ========================= */
+
+  .photo-slider {
+    position: relative;
+    width: 100%;
+    margin-bottom: 35px;
+  }
+
+  .photo-window {
     width: 100%;
     aspect-ratio: 4 / 3;
     background: #eee;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-window img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+
+  .photo-window img.active {
+    display: block;
+  }
+
+
+  /* ← → ボタン */
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,.9);
+    color: #222;
+    font-size: 20px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
-    margin-bottom: 35px;
+    z-index: 2;
   }
+
+  .slider-button:hover {
+    background: #fff;
+  }
+
+  .slider-prev {
+    left: 15px;
+  }
+
+  .slider-next {
+    right: 15px;
+  }
+
+
+  /* 写真番号 */
+
+  .photo-counter {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: .15em;
+    color: #777;
+    margin-top: 10px;
+  }
+
+
+  /* =========================
+     DESCRIPTION
+  ========================= */
 
   .modal-section {
     margin-top: 28px;
@@ -145,33 +227,70 @@
     font-size: 14px;
     line-height: 2;
     color: #555;
+    margin: 0;
   }
 
+
+  /* =========================
+     MOBILE
+  ========================= */
+
   @media (max-width: 700px) {
+
     .project-gallery {
       grid-template-columns: 1fr;
     }
 
     .modal-inner {
-      padding: 35px 25px;
+      padding: 35px 20px;
     }
+
+    .modal-inner h2 {
+      font-size: 23px;
+    }
+
+    .slider-button {
+      width: 36px;
+      height: 36px;
+    }
+
   }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="site-header">
-  <a class="brand" href="../index.html">RURU / EXHIBITION</a>
+
+  <a class="brand" href="../index.html">
+    RURU / EXHIBITION
+  </a>
+
 </header>
+
+
 
 <main>
 
+
 <section class="section">
+
+
+  <!-- BACK -->
 
   <a href="../index.html" style="font-size:11px;letter-spacing:.15em;">
     ← BACK TO EXHIBITION
   </a>
+
+
+  <!-- TITLE -->
 
   <p class="eyebrow" style="margin-top:80px;">
     EXHIBITION / PERSONAL PROJECT
@@ -183,6 +302,9 @@
     「あったらいいな」を、つくってみる。
   </p>
 
+
+  <!-- INTRO -->
+
   <p class="personal-intro">
     日々の生活の中で「こんなものがあったらいいのに」
     「こうしたらもっと面白いのに」と思ったことを、
@@ -191,73 +313,168 @@
   </p>
 
 
-  <!-- GALLERY -->
+
+  <!-- =========================
+       GALLERY
+  ========================= -->
 
   <div class="project-gallery">
 
-    <!-- PROJECT 01 -->
-    <button class="project-item" onclick="openModal('modal01')">
+
+    <!-- =====================
+         PROJECT 01
+    ====================== -->
+
+    <button
+      class="project-item"
+      onclick="openModal('modal01')"
+    >
 
       <div class="project-thumb">
-        <!-- 画像を入れる場合はここにimgを入れる -->
-        PROJECT 01 / THUMBNAIL
+
+        <img
+          src="../images/personal01-1.jpg.png"
+          alt="Personal Project 01"
+        >
+
       </div>
 
+
       <div class="project-info">
-        <div class="project-number">EXHIBIT 01</div>
-        <h3>こんなのあったらいいのに</h3>
-        <p>日常の中で思いついたアイデア。</p>
+
+        <div class="project-number">
+          EXHIBIT 01
+        </div>
+
+        <h3>
+          推し活から生まれたトラブル
+        </h3>
+
+        <p>
+          ぬい活みんへ
+        </p>
+
       </div>
 
     </button>
 
 
-    <!-- PROJECT 02 -->
-    <button class="project-item" onclick="openModal('modal02')">
+
+    <!-- =====================
+         PROJECT 02
+    ====================== -->
+
+    <button
+      class="project-item"
+      onclick="openModal('modal02')"
+    >
 
       <div class="project-thumb">
-        PROJECT 02 / THUMBNAIL
+
+        <img
+          src="../images/personal02-1.jpg"
+          alt="Personal Project 02"
+        >
+
       </div>
 
+
       <div class="project-info">
-        <div class="project-number">EXHIBIT 02</div>
-        <h3>こうしたらもっと面白いかも</h3>
-        <p>「もっとこうしたい」から始まった制作。</p>
+
+        <div class="project-number">
+          EXHIBIT 02
+        </div>
+
+        <h3>
+          こうしたらもっといいのに！！！
+        </h3>
+
+        <p>
+          「もっとこうしたい」から始まった行動
+        </p>
+
       </div>
 
     </button>
 
 
-    <!-- PROJECT 03 -->
-    <button class="project-item" onclick="openModal('modal03')">
+
+    <!-- =====================
+         PROJECT 03
+    ====================== -->
+
+    <button
+      class="project-item"
+      onclick="openModal('modal03')"
+    >
 
       <div class="project-thumb">
-        PROJECT 03 / THUMBNAIL
+
+        <img
+          src="../images/personal03-1.jpg"
+          alt="Personal Project 03"
+        >
+
       </div>
 
+
       <div class="project-info">
-        <div class="project-number">EXHIBIT 03</div>
-        <h3>思いつきを試してみる</h3>
-        <p>アイデアを実際に試してみた記録。</p>
+
+        <div class="project-number">
+          EXHIBIT 03
+        </div>
+
+        <h3>
+          思いつきを試してみる
+        </h3>
+
+        <p>
+          アイデアを実際に試してみた記録。
+        </p>
+
       </div>
 
     </button>
 
 
-    <!-- PROJECT 04 -->
-    <button class="project-item" onclick="openModal('modal04')">
+
+    <!-- =====================
+         PROJECT 04
+    ====================== -->
+
+    <button
+      class="project-item"
+      onclick="openModal('modal04')"
+    >
 
       <div class="project-thumb">
-        PROJECT 04 / THUMBNAIL
+
+        <img
+          src="../images/personal04-1.jpg"
+          alt="Personal Project 04"
+        >
+
       </div>
 
+
       <div class="project-info">
-        <div class="project-number">EXHIBIT 04</div>
-        <h3>これからつくりたいもの</h3>
-        <p>まだ形になっていないアイデア。</p>
+
+        <div class="project-number">
+          EXHIBIT 04
+        </div>
+
+        <h3>
+          これからつくりたいもの
+        </h3>
+
+        <p>
+          まだ形になっていないアイデア。
+        </p>
+
       </div>
 
     </button>
+
 
   </div>
 
@@ -266,240 +483,650 @@
 </main>
 
 
-<!-- ========================= -->
-<!-- MODAL 01 -->
-<!-- ========================= -->
+
+<!-- ==================================================
+     MODAL 01
+================================================== -->
 
 <div class="project-modal" id="modal01">
 
+
   <div class="modal-inner">
 
-    <button class="modal-close" onclick="closeModal('modal01')">
+
+    <button
+      class="modal-close"
+      onclick="closeModal('modal01')"
+    >
       ×
     </button>
+
 
     <div class="modal-label">
       EXHIBIT 01
     </div>
 
-    <h2>こんなのあったらいいのに</h2>
 
-    <div class="modal-image">
-      PROJECT IMAGE
+    <h2>
+      推し活から生まれたトラブル
+    </h2>
+
+
+    <!-- PHOTO SLIDER -->
+
+    <div class="photo-slider">
+
+      <div class="photo-window">
+
+        <img
+          class="modal01-photo active"
+          src="../images/personal01-1.jpg.png"
+          alt="Project 01 photo 1"
+        >
+
+        <img
+          class="modal01-photo"
+          src="../images/personal01-2.jpg.png"
+          alt="Project 01 photo 2"
+        >
+
+        <img
+          class="modal01-photo"
+          src="../images/personal01-3.jpg"
+          alt="Project 01 photo 3"
+        >
+
+        <img
+          class="modal01-photo"
+          src="../images/personal01-4.jpg"
+          alt="Project 01 photo 4"
+        >
+
+      </div>
+
+
+      <button
+        class="slider-button slider-prev"
+        onclick="changePhoto('modal01', -1)"
+      >
+        ←
+      </button>
+
+
+      <button
+        class="slider-button slider-next"
+        onclick="changePhoto('modal01', 1)"
+      >
+        →
+      </button>
+
+
+      <div
+        class="photo-counter"
+        id="modal01-counter"
+      >
+        1 / 4
+      </div>
+
     </div>
+
+
+
+    <!-- DESCRIPTION -->
 
     <div class="modal-section">
-      <h3>THOUGHT</h3>
+
+      <h3>
+        THOUGHT
+      </h3>
+
       <p>
-        ここに「どうしてこれを思いついたのか」を書きます。
-        日常生活の中で感じたことや、きっかけなど。
+        きっかけは、去年のこと。Xにある投稿が話題となりました。それは飲食店でグッズを広げないでほしいという店のコメント。それについて色々な意見が飛びました。
+        またその時、私の好きなポケモン界隈まで広がっており、FFがひどい言葉を浴びたこともありました。ぬいぐるみをテーブルに置くのはきたない！
+        ごもっともすぎる！でもぬいぐるみを置いて写真を撮りたい！そこで私はポケモン専用のぬいぐるみ立てがあればいいのではとおもいました
       </p>
+
     </div>
 
-    <div class="modal-section">
-      <h3>IDEA</h3>
-      <p>
-        ここに「こうしたらいいかも」と考えたことを書きます。
-      </p>
-    </div>
 
     <div class="modal-section">
-      <h3>MAKE / RECORD</h3>
+
+      <h3>
+        IDEA
+      </h3>
+
       <p>
-        実際につくったものや、制作過程について書きます。
+        市販で売っているぬいぐるみ立ては服に引っ掛けるが想定されてますが、ポケモンに服なんてありません。なので、そのポケモンにあったぬいぐるみ立てがあったらいいのではと
+        。例えば、バニリッチはアイスクリーム立てをモチーフ、シャンデラは進化前のポケモンに支えてもらうなどのデザインを考えました。
       </p>
+
     </div>
+
+
+    <div class="modal-section">
+
+      <h3>
+        MAKE / RECORD
+      </h3>
+
+      <p>
+        フュージョン360でモデリングしていきます。SNSに上げるとその商品は一生でないというのはオタクの常識なので、ネットには上げてませんが、
+        個人的に見せた人からはかわいい！や、自分の好きなポケモンも考えて作ってほしいという声を頂きました。よかった
+      </p>
+
+    </div>
+
 
   </div>
 
 </div>
 
 
-<!-- ========================= -->
-<!-- MODAL 02 -->
-<!-- ========================= -->
+
+<!-- ==================================================
+     MODAL 02
+================================================== -->
 
 <div class="project-modal" id="modal02">
 
+
   <div class="modal-inner">
 
-    <button class="modal-close" onclick="closeModal('modal02')">
+
+    <button
+      class="modal-close"
+      onclick="closeModal('modal02')"
+    >
       ×
     </button>
+
 
     <div class="modal-label">
       EXHIBIT 02
     </div>
 
-    <h2>こうしたらもっと面白いかも</h2>
 
-    <div class="modal-image">
-      PROJECT IMAGE
+    <h2>
+      こうしたらもっといいのに
+    </h2>
+
+
+    <div class="photo-slider">
+
+      <div class="photo-window">
+
+        <img
+          class="modal02-photo active"
+          src="../images/personal02-1.jpg"
+          alt="Project 02 photo 1"
+        >
+
+        <img
+          class="modal02-photo"
+          src="../images/personal02-2.jpg"
+          alt="Project 02 photo 2"
+        >
+
+        <img
+          class="modal02-photo"
+          src="../images/personal02-3.jpg"
+          alt="Project 02 photo 3"
+        >
+
+      </div>
+
+
+      <button
+        class="slider-button slider-prev"
+        onclick="changePhoto('modal02', -1)"
+      >
+        ←
+      </button>
+
+
+      <button
+        class="slider-button slider-next"
+        onclick="changePhoto('modal02', 1)"
+      >
+        →
+      </button>
+
+
+      <div
+        class="photo-counter"
+        id="modal02-counter"
+      >
+        1 / 3
+      </div>
+
     </div>
+
 
     <div class="modal-section">
-      <h3>THOUGHT</h3>
+
+      <h3>
+        THOUGHT
+      </h3>
+
       <p>
-        ここにきっかけや、日常の中で感じたことを書きます。
+        わたしはサラダ屋さんでバイトをしているのですが、連絡事項が多すぎで追うのが大変！文字で言われてもわからないよ！！
+        ということが多かったので、社員の方と相談して、絵やノートを使ってわかりやすくしよう！！ということになりました
       </p>
+
     </div>
 
-    <div class="modal-section">
-      <h3>IDEA</h3>
-      <p>
-        ここに考えたアイデアを書きます。
-      </p>
-    </div>
 
     <div class="modal-section">
-      <h3>MAKE / RECORD</h3>
+
+      <h3>
+        IDEA
+      </h3>
+
       <p>
-        ここに制作や試行錯誤の記録を書きます。
+        絵に描く！！ノートにまとめる！！
       </p>
+
     </div>
+
+
+    <div class="modal-section">
+
+      <h3>
+        MAKE / RECORD
+      </h3>
+
+      <p>
+        アルバイトの人からは分かりやすいね！！との言葉をいただきました。伝わらないと諦めるのではなく、
+        社員の方と相談して、どうしたら伝わるのかを考えることが大事だなと思いました。
+      </p>
+
+    </div>
+
 
   </div>
 
 </div>
 
 
-<!-- ========================= -->
-<!-- MODAL 03 -->
-<!-- ========================= -->
+
+<!-- ==================================================
+     MODAL 03
+================================================== -->
 
 <div class="project-modal" id="modal03">
 
+
   <div class="modal-inner">
 
-    <button class="modal-close" onclick="closeModal('modal03')">
+
+    <button
+      class="modal-close"
+      onclick="closeModal('modal03')"
+    >
       ×
     </button>
+
 
     <div class="modal-label">
       EXHIBIT 03
     </div>
 
-    <h2>思いつきを試してみる</h2>
 
-    <div class="modal-image">
-      PROJECT IMAGE
+    <h2>
+      思いつきを試してみる
+    </h2>
+
+
+    <div class="photo-slider">
+
+      <div class="photo-window">
+
+        <img
+          class="modal03-photo active"
+          src="../images/personal03-1.jpg"
+          alt="Project 03 photo 1"
+        >
+
+        <img
+          class="modal03-photo"
+          src="../images/personal03-2.jpg"
+          alt="Project 03 photo 2"
+        >
+
+        <img
+          class="modal03-photo"
+          src="../images/personal03-3.jpg"
+          alt="Project 03 photo 3"
+        >
+
+      </div>
+
+
+      <button
+        class="slider-button slider-prev"
+        onclick="changePhoto('modal03', -1)"
+      >
+        ←
+      </button>
+
+
+      <button
+        class="slider-button slider-next"
+        onclick="changePhoto('modal03', 1)"
+      >
+        →
+      </button>
+
+
+      <div
+        class="photo-counter"
+        id="modal03-counter"
+      >
+        1 / 3
+      </div>
+
     </div>
 
+
     <div class="modal-section">
-      <h3>THOUGHT</h3>
+
+      <h3>
+        THOUGHT
+      </h3>
+
       <p>
         ここにきっかけを書きます。
       </p>
+
     </div>
 
+
     <div class="modal-section">
-      <h3>IDEA</h3>
+
+      <h3>
+        IDEA
+      </h3>
+
       <p>
         ここにアイデアを書きます。
       </p>
+
     </div>
 
+
     <div class="modal-section">
-      <h3>MAKE / RECORD</h3>
+
+      <h3>
+        MAKE / RECORD
+      </h3>
+
       <p>
         ここに実際に試したことを書きます。
       </p>
+
     </div>
+
 
   </div>
 
 </div>
 
 
-<!-- ========================= -->
-<!-- MODAL 04 -->
-<!-- ========================= -->
+
+<!-- ==================================================
+     MODAL 04
+================================================== -->
 
 <div class="project-modal" id="modal04">
 
+
   <div class="modal-inner">
 
-    <button class="modal-close" onclick="closeModal('modal04')">
+
+    <button
+      class="modal-close"
+      onclick="closeModal('modal04')"
+    >
       ×
     </button>
+
 
     <div class="modal-label">
       EXHIBIT 04
     </div>
 
-    <h2>これからつくりたいもの</h2>
 
-    <div class="modal-image">
-      IDEA IMAGE
+    <h2>
+      これからつくりたいもの
+    </h2>
+
+
+    <div class="photo-slider">
+
+      <div class="photo-window">
+
+        <img
+          class="modal04-photo active"
+          src="../images/personal04-1.jpg"
+          alt="Project 04 photo 1"
+        >
+
+        <img
+          class="modal04-photo"
+          src="../images/personal04-2.jpg"
+          alt="Project 04 photo 2"
+        >
+
+        <img
+          class="modal04-photo"
+          src="../images/personal04-3.jpg"
+          alt="Project 04 photo 3"
+        >
+
+      </div>
+
+
+      <button
+        class="slider-button slider-prev"
+        onclick="changePhoto('modal04', -1)"
+      >
+        ←
+      </button>
+
+
+      <button
+        class="slider-button slider-next"
+        onclick="changePhoto('modal04', 1)"
+      >
+        →
+      </button>
+
+
+      <div
+        class="photo-counter"
+        id="modal04-counter"
+      >
+        1 / 3
+      </div>
+
     </div>
 
+
     <div class="modal-section">
-      <h3>THOUGHT</h3>
+
+      <h3>
+        THOUGHT
+      </h3>
+
       <p>
         いつかつくってみたいと思っていることを書きます。
       </p>
+
     </div>
 
+
     <div class="modal-section">
-      <h3>IDEA</h3>
+
+      <h3>
+        IDEA
+      </h3>
+
       <p>
         どんなものにしたいのか、自由に書きます。
       </p>
+
     </div>
 
+
     <div class="modal-section">
-      <h3>RECORD</h3>
+
+      <h3>
+        RECORD
+      </h3>
+
       <p>
         実際に制作したら、ここに記録を追加します。
       </p>
+
     </div>
+
 
   </div>
 
 </div>
 
 
+
 <script>
 
+/* =========================
+   MODAL
+========================= */
+
 function openModal(id) {
-  document.getElementById(id).classList.add("active");
+
+  document
+    .getElementById(id)
+    .classList
+    .add("active");
+
 }
+
 
 function closeModal(id) {
-  document.getElementById(id).classList.remove("active");
+
+  document
+    .getElementById(id)
+    .classList
+    .remove("active");
+
 }
 
 
-/* 背景をクリックして閉じる */
 
-document.querySelectorAll(".project-modal").forEach(function(modal) {
+/* =========================
+   PHOTO SLIDER
+========================= */
 
-  modal.addEventListener("click", function(event) {
+const photoIndexes = {
+  modal01: 0,
+  modal02: 0,
+  modal03: 0,
+  modal04: 0
+};
 
-    if (event.target === modal) {
-      modal.classList.remove("active");
-    }
+
+function changePhoto(modalId, direction) {
+
+  const photos = document.querySelectorAll(
+    "." + modalId + "-photo"
+  );
+
+  let currentIndex = photoIndexes[modalId];
+
+  photos[currentIndex].classList.remove("active");
+
+
+  currentIndex += direction;
+
+
+  /* 最後まで行ったら最初へ */
+
+  if (currentIndex >= photos.length) {
+    currentIndex = 0;
+  }
+
+
+  /* 最初より前に行ったら最後へ */
+
+  if (currentIndex < 0) {
+    currentIndex = photos.length - 1;
+  }
+
+
+  photos[currentIndex].classList.add("active");
+
+  photoIndexes[modalId] = currentIndex;
+
+
+  /* 1 / 4 の数字を更新 */
+
+  document.getElementById(
+    modalId + "-counter"
+  ).textContent =
+    (currentIndex + 1) + " / " + photos.length;
+
+}
+
+
+
+/* =========================
+   BACKGROUND CLICK
+========================= */
+
+document
+  .querySelectorAll(".project-modal")
+  .forEach(function(modal) {
+
+    modal.addEventListener("click", function(event) {
+
+      if (event.target === modal) {
+
+        modal.classList.remove("active");
+
+      }
+
+    });
 
   });
 
-});
 
 
-/* ESCキーでも閉じる */
+/* =========================
+   ESC KEY
+========================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+  "keydown",
+  function(event) {
 
-  if (event.key === "Escape") {
+    if (event.key === "Escape") {
 
-    document.querySelectorAll(".project-modal").forEach(function(modal) {
-      modal.classList.remove("active");
-    });
+      document
+        .querySelectorAll(".project-modal")
+        .forEach(function(modal) {
+
+          modal.classList.remove("active");
+
+        });
+
+    }
 
   }
-
-});
+);
 
 </script>
+
 
 </body>
 </html>

@@ -3,29 +3,1176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>HOBBY｜RURU EXHIBITION</title>
+
 <link rel="stylesheet" href="../css/style.css">
+
+<style>
+
+/* =========================
+   HOBBY INTRO
+========================= */
+
+.hobby-intro {
+  max-width: 700px;
+  margin-top: 30px;
+  line-height: 2;
+  color: #555;
+}
+
+
+/* =========================
+   HOBBY GALLERY
+========================= */
+
+.hobby-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px 25px;
+  margin-top: 80px;
+}
+
+
+/* 1つの趣味 */
+
+.hobby-item {
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+
+/* 写真 */
+
+.hobby-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #eeeeee;
+  overflow: hidden;
+}
+
+.hobby-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  transition: transform .4s ease;
+}
+
+
+/* マウスを乗せたとき */
+
+.hobby-item:hover .hobby-image img {
+  transform: scale(1.04);
+}
+
+
+/* 文字 */
+
+.hobby-info {
+  padding-top: 15px;
+}
+
+.hobby-number {
+  font-size: 10px;
+  letter-spacing: .15em;
+  color: #888;
+  margin-bottom: 7px;
+}
+
+.hobby-info h3 {
+  margin: 0 0 7px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.hobby-info p {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.hobby-modal {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,.65);
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  z-index: 9999;
+}
+
+.hobby-modal.active {
+  display: flex;
+}
+
+
+.hobby-modal-inner {
+  position: relative;
+
+  width: min(650px, 100%);
+
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  background: #fff;
+
+  padding: 45px;
+}
+
+
+/* 閉じるボタン */
+
+.hobby-close {
+  position: absolute;
+
+  top: 12px;
+  right: 18px;
+
+  border: none;
+  background: none;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  color: #333;
+}
+
+
+/* モーダル写真 */
+
+.hobby-modal-image {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  background: #eee;
+
+  overflow: hidden;
+
+  margin: 25px 0 30px;
+}
+
+.hobby-modal-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* モーダル文字 */
+
+.hobby-modal-label {
+  font-size: 10px;
+  letter-spacing: .15em;
+  color: #888;
+}
+
+.hobby-modal-inner h2 {
+  margin: 10px 0 0;
+
+  font-size: 26px;
+
+  font-weight: 500;
+}
+
+.hobby-modal-text {
+  font-size: 14px;
+
+  line-height: 2;
+
+  color: #555;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .hobby-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 15px;
+  }
+
+  .hobby-modal-inner {
+    padding: 35px 20px;
+  }
+
+}
+
+</style>
 </head>
+
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="site-header">
-  <a class="brand" href="../index.html">RURU / EXHIBITION</a>
+
+  <a class="brand" href="../index.html">
+    RURU / EXHIBITION
+  </a>
+
 </header>
+
+
+
 <main>
-  <section class="section">
-    <a href="../index.html" style="font-size:11px;letter-spacing:.15em;">← BACK TO EXHIBITION</a>
-    <p class="eyebrow" style="margin-top:80px;">EXHIBITION / HOBBY</p>
-    <h1>HOBBY</h1>
-    <p class="hero-sub">好きなもの</p>
-    <div class="work-placeholder" style="height:430px;margin-top:70px;">MAIN VISUAL / WORK IMAGE</div>
-    <div class="section-head" style="margin-top:80px;"><h2>ABOUT</h2><span>01</span></div>
-    <p class="section-intro">ここにこの活動の概要を入れます。</p>
-    <div class="section-head"><h2>MY ROLE</h2><span>02</span></div>
-    <p class="section-intro">ここに自分が担当したことを入れます。</p>
-    <div class="section-head"><h2>PROCESS</h2><span>03</span></div>
-    <p class="section-intro">ここに考えたこと、試行錯誤、制作過程を入れます。</p>
-    <div class="section-head"><h2>RESULT</h2><span>04</span></div>
-    <p class="section-intro">ここに成果・完成物・学んだことを入れます。</p>
-  </section>
+
+<section class="section">
+
+
+  <!-- BACK -->
+
+  <a
+    href="../index.html"
+    style="font-size:11px;letter-spacing:.15em;"
+  >
+    ← BACK TO EXHIBITION
+  </a>
+
+
+
+  <!-- TITLE -->
+
+  <p
+    class="eyebrow"
+    style="margin-top:80px;"
+  >
+    EXHIBITION / HOBBY
+  </p>
+
+
+  <h1>
+    HOBBY
+  </h1>
+
+
+  <p class="hero-sub">
+    好きなもの、好きなだけ。
+  </p>
+
+
+  <p class="hobby-intro">
+    私が日々楽しんでいることや、好きなものを集めました。
+    「好き」がたくさんあることも、私らしさのひとつです。
+  </p>
+
+
+
+  <!-- =========================
+       GALLERY
+  ========================= -->
+
+  <div class="hobby-gallery">
+
+
+    <!-- =====================
+         HOBBY 01
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby01')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby01.jpg"
+          alt="Hobby 01"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          01
+        </div>
+
+        <h3>
+          ANIME
+        </h3>
+
+        <p>
+          アニメを見ること。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 02
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby02')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby02.jpg"
+          alt="Hobby 02"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          02
+        </div>
+
+        <h3>
+          GOODS
+        </h3>
+
+        <p>
+          好きな作品のグッズを集めること。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 03
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby03')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby03.jpg"
+          alt="Hobby 03"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          03
+        </div>
+
+        <h3>
+          2.5D
+        </h3>
+
+        <p>
+          2.5次元作品を楽しむこと。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 04
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby04')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby04.jpg"
+          alt="Hobby 04"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          04
+        </div>
+
+        <h3>
+          MUSIC
+        </h3>
+
+        <p>
+          音楽を聴くこと。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 05
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby05')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby05.jpg"
+          alt="Hobby 05"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          05
+        </div>
+
+        <h3>
+          CAFE
+        </h3>
+
+        <p>
+          カフェやお気に入りのお店巡り。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 06
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby06')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby06.jpg"
+          alt="Hobby 06"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          06
+        </div>
+
+        <h3>
+          COLLECT
+        </h3>
+
+        <p>
+          好きなものを集めること。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 07
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby07')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby07.jpg"
+          alt="Hobby 07"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          07
+        </div>
+
+        <h3>
+          EVENT
+        </h3>
+
+        <p>
+          好きな作品のイベントに行くこと。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 08
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby08')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby08.jpg"
+          alt="Hobby 08"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          08
+        </div>
+
+        <h3>
+          PHOTO
+        </h3>
+
+        <p>
+          写真を撮ること。
+        </p>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- =====================
+         HOBBY 09
+    ====================== -->
+
+    <button
+      class="hobby-item"
+      onclick="openHobby('hobby09')"
+    >
+
+      <div class="hobby-image">
+
+        <img
+          src="../images/hobby09.jpg"
+          alt="Hobby 09"
+        >
+
+      </div>
+
+
+      <div class="hobby-info">
+
+        <div class="hobby-number">
+          09
+        </div>
+
+        <h3>
+          FAVORITE
+        </h3>
+
+        <p>
+          そのほかの好きなもの。
+        </p>
+
+      </div>
+
+    </button>
+
+
+  </div>
+
+</section>
+
 </main>
+
+
+
+<!-- ==================================================
+     MODAL 01
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby01"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby01')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 01
+    </div>
+
+
+    <h2>
+      ANIME
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby01.jpg"
+        alt="Anime"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここにアニメが好きな理由や、
+      好きな作品について自由に書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 02
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby02"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby02')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 02
+    </div>
+
+
+    <h2>
+      GOODS
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby02.jpg"
+        alt="Goods"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここにグッズを集めることについての
+      文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 03
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby03"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby03')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 03
+    </div>
+
+
+    <h2>
+      2.5D
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby03.jpg"
+        alt="2.5D"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここに2.5次元作品についての
+      文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 04
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby04"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby04')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 04
+    </div>
+
+
+    <h2>
+      MUSIC
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby04.jpg"
+        alt="Music"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここに音楽についての文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 05
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby05"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby05')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 05
+    </div>
+
+
+    <h2>
+      CAFE
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby05.jpg"
+        alt="Cafe"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここにカフェ巡りについての文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 06
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby06"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby06')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 06
+    </div>
+
+
+    <h2>
+      COLLECT
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby06.jpg"
+        alt="Collect"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここにコレクションについての文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 07
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby07"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby07')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 07
+    </div>
+
+
+    <h2>
+      EVENT
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby07.jpg"
+        alt="Event"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここにイベントについての文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 08
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby08"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby08')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 08
+    </div>
+
+
+    <h2>
+      PHOTO
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby08.jpg"
+        alt="Photo"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここに写真についての文章を書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL 09
+================================================== -->
+
+<div
+  class="hobby-modal"
+  id="hobby09"
+>
+
+  <div class="hobby-modal-inner">
+
+    <button
+      class="hobby-close"
+      onclick="closeHobby('hobby09')"
+    >
+      ×
+    </button>
+
+
+    <div class="hobby-modal-label">
+      HOBBY / 09
+    </div>
+
+
+    <h2>
+      FAVORITE
+    </h2>
+
+
+    <div class="hobby-modal-image">
+
+      <img
+        src="../images/hobby09.jpg"
+        alt="Favorite"
+      >
+
+    </div>
+
+
+    <p class="hobby-modal-text">
+      ここにその他の好きなものについて書きます。
+    </p>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+function openHobby(id) {
+
+  document
+    .getElementById(id)
+    .classList
+    .add("active");
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeHobby(id) {
+
+  document
+    .getElementById(id)
+    .classList
+    .remove("active");
+
+}
+
+
+/* =========================
+   BACKGROUND CLICK
+========================= */
+
+document
+  .querySelectorAll(".hobby-modal")
+  .forEach(function(modal) {
+
+    modal.addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === modal) {
+
+          modal.classList.remove("active");
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+
+      document
+        .querySelectorAll(".hobby-modal")
+        .forEach(function(modal) {
+
+          modal.classList.remove("active");
+
+        });
+
+    }
+
+  }
+);
+
+</script>
+
+
 </body>
 </html>
