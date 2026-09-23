@@ -5,27 +5,501 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PERSONAL PROJECT｜RURU EXHIBITION</title>
 <link rel="stylesheet" href="../css/style.css">
+
+<style>
+  .personal-intro {
+    max-width: 720px;
+    margin-top: 30px;
+    line-height: 2;
+    color: #555;
+  }
+
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+    margin-top: 80px;
+  }
+
+  .project-item {
+    border: none;
+    background: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    letter-spacing: .12em;
+    font-size: 11px;
+    overflow: hidden;
+  }
+
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-info {
+    padding-top: 18px;
+  }
+
+  .project-number {
+    font-size: 10px;
+    letter-spacing: .15em;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .project-info h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .project-info p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* モーダル */
+  .project-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    z-index: 9999;
+  }
+
+  .project-modal.active {
+    display: flex;
+  }
+
+  .modal-inner {
+    position: relative;
+    background: #fff;
+    width: min(720px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 50px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+  }
+
+  .modal-label {
+    font-size: 10px;
+    letter-spacing: .15em;
+    color: #888;
+  }
+
+  .modal-inner h2 {
+    margin: 12px 0 30px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  .modal-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    margin-bottom: 35px;
+  }
+
+  .modal-section {
+    margin-top: 28px;
+  }
+
+  .modal-section h3 {
+    font-size: 11px;
+    letter-spacing: .15em;
+    margin-bottom: 10px;
+  }
+
+  .modal-section p {
+    font-size: 14px;
+    line-height: 2;
+    color: #555;
+  }
+
+  @media (max-width: 700px) {
+    .project-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .modal-inner {
+      padding: 35px 25px;
+    }
+  }
+</style>
 </head>
+
 <body>
+
 <header class="site-header">
   <a class="brand" href="../index.html">RURU / EXHIBITION</a>
 </header>
+
 <main>
-  <section class="section">
-    <a href="../index.html" style="font-size:11px;letter-spacing:.15em;">← BACK TO EXHIBITION</a>
-    <p class="eyebrow" style="margin-top:80px;">EXHIBITION / PERSONAL PROJECT</p>
-    <h1>PERSONAL PROJECT</h1>
-    <p class="hero-sub">個人プロジェクト</p>
-    <div class="work-placeholder" style="height:430px;margin-top:70px;">MAIN VISUAL / WORK IMAGE</div>
-    <div class="section-head" style="margin-top:80px;"><h2>ABOUT</h2><span>01</span></div>
-    <p class="section-intro">ここにこの活動の概要を入れます。</p>
-    <div class="section-head"><h2>MY ROLE</h2><span>02</span></div>
-    <p class="section-intro">ここに自分が担当したことを入れます。</p>
-    <div class="section-head"><h2>PROCESS</h2><span>03</span></div>
-    <p class="section-intro">ここに考えたこと、試行錯誤、制作過程を入れます。</p>
-    <div class="section-head"><h2>RESULT</h2><span>04</span></div>
-    <p class="section-intro">ここに成果・完成物・学んだことを入れます。</p>
-  </section>
+
+<section class="section">
+
+  <a href="../index.html" style="font-size:11px;letter-spacing:.15em;">
+    ← BACK TO EXHIBITION
+  </a>
+
+  <p class="eyebrow" style="margin-top:80px;">
+    EXHIBITION / PERSONAL PROJECT
+  </p>
+
+  <h1>PERSONAL PROJECT</h1>
+
+  <p class="hero-sub">
+    「あったらいいな」を、つくってみる。
+  </p>
+
+  <p class="personal-intro">
+    日々の生活の中で「こんなものがあったらいいのに」
+    「こうしたらもっと面白いのに」と思ったことを、
+    自由に考えて、実際に形にしてみる。
+    ここは、そんな小さなアイデアや制作を記録する場所です。
+  </p>
+
+
+  <!-- GALLERY -->
+
+  <div class="project-gallery">
+
+    <!-- PROJECT 01 -->
+    <button class="project-item" onclick="openModal('modal01')">
+
+      <div class="project-thumb">
+        <!-- 画像を入れる場合はここにimgを入れる -->
+        PROJECT 01 / THUMBNAIL
+      </div>
+
+      <div class="project-info">
+        <div class="project-number">EXHIBIT 01</div>
+        <h3>こんなのあったらいいのに</h3>
+        <p>日常の中で思いついたアイデア。</p>
+      </div>
+
+    </button>
+
+
+    <!-- PROJECT 02 -->
+    <button class="project-item" onclick="openModal('modal02')">
+
+      <div class="project-thumb">
+        PROJECT 02 / THUMBNAIL
+      </div>
+
+      <div class="project-info">
+        <div class="project-number">EXHIBIT 02</div>
+        <h3>こうしたらもっと面白いかも</h3>
+        <p>「もっとこうしたい」から始まった制作。</p>
+      </div>
+
+    </button>
+
+
+    <!-- PROJECT 03 -->
+    <button class="project-item" onclick="openModal('modal03')">
+
+      <div class="project-thumb">
+        PROJECT 03 / THUMBNAIL
+      </div>
+
+      <div class="project-info">
+        <div class="project-number">EXHIBIT 03</div>
+        <h3>思いつきを試してみる</h3>
+        <p>アイデアを実際に試してみた記録。</p>
+      </div>
+
+    </button>
+
+
+    <!-- PROJECT 04 -->
+    <button class="project-item" onclick="openModal('modal04')">
+
+      <div class="project-thumb">
+        PROJECT 04 / THUMBNAIL
+      </div>
+
+      <div class="project-info">
+        <div class="project-number">EXHIBIT 04</div>
+        <h3>これからつくりたいもの</h3>
+        <p>まだ形になっていないアイデア。</p>
+      </div>
+
+    </button>
+
+  </div>
+
+</section>
+
 </main>
+
+
+<!-- ========================= -->
+<!-- MODAL 01 -->
+<!-- ========================= -->
+
+<div class="project-modal" id="modal01">
+
+  <div class="modal-inner">
+
+    <button class="modal-close" onclick="closeModal('modal01')">
+      ×
+    </button>
+
+    <div class="modal-label">
+      EXHIBIT 01
+    </div>
+
+    <h2>こんなのあったらいいのに</h2>
+
+    <div class="modal-image">
+      PROJECT IMAGE
+    </div>
+
+    <div class="modal-section">
+      <h3>THOUGHT</h3>
+      <p>
+        ここに「どうしてこれを思いついたのか」を書きます。
+        日常生活の中で感じたことや、きっかけなど。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>IDEA</h3>
+      <p>
+        ここに「こうしたらいいかも」と考えたことを書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>MAKE / RECORD</h3>
+      <p>
+        実際につくったものや、制作過程について書きます。
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- MODAL 02 -->
+<!-- ========================= -->
+
+<div class="project-modal" id="modal02">
+
+  <div class="modal-inner">
+
+    <button class="modal-close" onclick="closeModal('modal02')">
+      ×
+    </button>
+
+    <div class="modal-label">
+      EXHIBIT 02
+    </div>
+
+    <h2>こうしたらもっと面白いかも</h2>
+
+    <div class="modal-image">
+      PROJECT IMAGE
+    </div>
+
+    <div class="modal-section">
+      <h3>THOUGHT</h3>
+      <p>
+        ここにきっかけや、日常の中で感じたことを書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>IDEA</h3>
+      <p>
+        ここに考えたアイデアを書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>MAKE / RECORD</h3>
+      <p>
+        ここに制作や試行錯誤の記録を書きます。
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- MODAL 03 -->
+<!-- ========================= -->
+
+<div class="project-modal" id="modal03">
+
+  <div class="modal-inner">
+
+    <button class="modal-close" onclick="closeModal('modal03')">
+      ×
+    </button>
+
+    <div class="modal-label">
+      EXHIBIT 03
+    </div>
+
+    <h2>思いつきを試してみる</h2>
+
+    <div class="modal-image">
+      PROJECT IMAGE
+    </div>
+
+    <div class="modal-section">
+      <h3>THOUGHT</h3>
+      <p>
+        ここにきっかけを書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>IDEA</h3>
+      <p>
+        ここにアイデアを書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>MAKE / RECORD</h3>
+      <p>
+        ここに実際に試したことを書きます。
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- MODAL 04 -->
+<!-- ========================= -->
+
+<div class="project-modal" id="modal04">
+
+  <div class="modal-inner">
+
+    <button class="modal-close" onclick="closeModal('modal04')">
+      ×
+    </button>
+
+    <div class="modal-label">
+      EXHIBIT 04
+    </div>
+
+    <h2>これからつくりたいもの</h2>
+
+    <div class="modal-image">
+      IDEA IMAGE
+    </div>
+
+    <div class="modal-section">
+      <h3>THOUGHT</h3>
+      <p>
+        いつかつくってみたいと思っていることを書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>IDEA</h3>
+      <p>
+        どんなものにしたいのか、自由に書きます。
+      </p>
+    </div>
+
+    <div class="modal-section">
+      <h3>RECORD</h3>
+      <p>
+        実際に制作したら、ここに記録を追加します。
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function openModal(id) {
+  document.getElementById(id).classList.add("active");
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove("active");
+}
+
+
+/* 背景をクリックして閉じる */
+
+document.querySelectorAll(".project-modal").forEach(function(modal) {
+
+  modal.addEventListener("click", function(event) {
+
+    if (event.target === modal) {
+      modal.classList.remove("active");
+    }
+
+  });
+
+});
+
+
+/* ESCキーでも閉じる */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+
+    document.querySelectorAll(".project-modal").forEach(function(modal) {
+      modal.classList.remove("active");
+    });
+
+  }
+
+});
+
+</script>
+
 </body>
 </html>
